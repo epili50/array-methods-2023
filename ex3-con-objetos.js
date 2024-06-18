@@ -297,20 +297,55 @@ const flightReservations = [
 
 // Usa el método forEach para iterar por cada uno de los vuelos y mostrarlos por consola
 
+flightReservations.forEach(f => {
+  console.log('Ejercicio 1 Vuelo siguiente: ', f);
+})
+
 // Usa el método forEach para mostrar UNICAMENTE el pasajero de cada uno de lo vuelos
+
+flightReservations.forEach(f => {
+  console.log('Ejercicio 2: Pasajero del vuelo siguiente: ', f.passenger);
+})
+
 
 // USa el método find para encontrar el vuelo número 'AA456'. Luego, muestra por consola el precio total de este vuelo
 
+const findFlight = flightReservations.find(f => f.flightNumber == 'AA456');
+console.log('Ejercicio 3: Precio del Vuelo AA456: ', findFlight.totalPrice);
+
 // Usa el método find para encontrar el vuelo que ha reservado el señor bob.johnson@example.com. Muestra el objeto entero
+
+const findByMail = flightReservations.find(f => f.passenger.contactInfo.email == 'bob.johnson@example.com');
+console.log('Ejercicio 4: Vuelo reservado por bob.johnson@example.com: ', findByMail);
 
 // Usa el método some para averiguar si algún vuelo tiene como destino el aeropuerto de LPA GRAN CANARIA
 
+const findAeroport = flightReservations.some(f => f.arrival.airport == 'LPA');
+console.log('Ejercicio 5: ¿Algun vuelo tiene destino a LPA GRAN CANARIA?: ', findAeroport);
+
 // Usa el método every para comprobar si todos los vuelos están confirmados (isConfirmed)
+
+const isConfirmed = flightReservations.every(f => f.isConfirmed == true);
+console.log('Ejercicio 6: ¿Están todos los vuelos confirmados?: ', isConfirmed);
+
 
 // Usa el método filter para obtener todos los vuelos que tienen la puerta de embarque 'D5'
 
+const filterByGate = flightReservations.filter(f => f.gate == 'D5');
+console.log("Ejercicio 7: Vuelos con puerta de embarque 'D5':", filterByGate);
+
 // Usa el método filter para obtener todos los vuelos que incluyen menús con comida Vegan. BONUS: Muestra por consola el nombre de la aerolínea
+
+const hasVegan = flightReservations.filter(f => f.specialMeals.includes('Vegan'));
+console.log('Ejercicio 9: Número de vuelo y compañía aérea: ', hasVegan);
+console.log('Ejercicio 8 BONUS: Nombre de la aerolínea del vuelo: ', hasVegan[0].airline);
 
 // Usa el método map para convertir cada objeto en un string con el formato 'numero de vuelo'-'compañía area'´Ejemplo : "AA456-American Airlines"
 
+const flightAndCompany = flightReservations.map(f => `${f.flightNumber}-${f.airline}`)
+console.log('Ejercicio 9: Número de vuelo y compañía aérea: ', flightAndCompany);
+
 // DIFICIL. USA el método reduce para sumar el conjunto total de puntos obtenidos de loyalyProgram de todos los tickets
+const totalPoints = flightReservations.reduce((pAccumlator, pCurrent) => pAccumlator + pCurrent.loyaltyProgram.points, 0);
+console.log('BONUS: El total de puntos de todos los tikets es: ', totalPoints);
+
